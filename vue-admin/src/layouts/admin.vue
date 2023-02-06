@@ -1,8 +1,9 @@
-<!-- import('../') -->
 <script setup></script>
 
 <template>
-  <p>b.vue</p>
+  <h2>admin.vue</h2>
+
+  <router-view></router-view>
 </template>
 
 <style scoped></style>

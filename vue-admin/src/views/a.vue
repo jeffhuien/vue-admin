@@ -5,6 +5,6 @@ export default {
   },
 };
 </script>
-<template>12344</template>
+<template>a.vue</template>
 
 <style scoped></style>

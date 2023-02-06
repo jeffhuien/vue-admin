@@ -1,10 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
+import autoLoad from "./autoLoad";
+import routes from "./routes";
 
 const router = createRouter({
   history: createWebHistory(),
-  routes: [
-    { path: "/", component: () => import("../views/a.vue") },
-    { path: "/admin", component: () => import("../components/HelloWorld.vue") },
-  ],
+  routes: [...routes, ...autoLoad],
 });
 export default router;

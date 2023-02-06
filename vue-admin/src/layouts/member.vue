@@ -1,8 +1,8 @@
-<!-- import('../') -->
 <script setup></script>
 
 <template>
-  <p>b.vue</p>
+  member
+  <router-view></router-view>
 </template>
 
 <style scoped></style>
