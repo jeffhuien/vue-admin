@@ -1,6 +1,4 @@
-import _ from "lodash";
-
-export default class {
+class Helper {
   public env = {} as ImportMeta;
 
   constructor() {
@@ -20,3 +18,8 @@ export default class {
     return Env;
   }
 }
+
+const helper = new Helper();
+const env = helper.env;
+export default helper;
+export { env };
