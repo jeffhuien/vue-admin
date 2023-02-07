@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import HelloWorld from "./components/HelloWorld.vue";
+console.log(import.meta.env.MODE);
 </script>
 
 <template>

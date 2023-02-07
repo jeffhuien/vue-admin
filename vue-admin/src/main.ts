@@ -1,9 +1,12 @@
 import { createApp } from "vue";
 // import "./style.css";
 import App from "./App.vue";
-
-import router from "./route";
+import router from "@/router";
+import setupPlugins from "./plugins";
 
 const app = createApp(App);
+
+setupPlugins(app);
+
 app.use(router);
 app.mount("#app");

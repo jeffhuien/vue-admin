@@ -1,22 +1,29 @@
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
-import { fileURLToPath, URL } from "node:url";
-import path from "path/win32";
+import { ConfigEnv, defineConfig, loadEnv } from "vite";
+
+import alias from "./vite/alias";
+import parseEnv from "./vite/utils";
+import setupPlugins from "./vite/plugins";
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [vue()],
-  server: {
-    host: "0.0.0.0",
-    port: 80,
-    open: true,
-  },
+export default ({ command, mode }: ConfigEnv) => {
+  const isBuild = command == "build";
+  const root = process.cwd();
+  const env = parseEnv(loadEnv(mode, root));
+  // env = parseEnv(env);
+  // console.log(env);
+  // env.VITE_SOME_KEY
 
-  resolve: {
-    alias: {
-      // "@": fileURLToPath(new URL("./src", import.meta.url)),
-      "@": path.resolve(__dirname, "src"),
-      // "@": "/src",
+  return {
+    // plugins: [vue()],
+    plugins: setupPlugins(isBuild, env),
+    server: {
+      host: "0.0.0.0",
+      port: 80,
+      // open: true,
     },
-  },
-});
+
+    resolve: {
+      alias,
+    },
+  };
+};
