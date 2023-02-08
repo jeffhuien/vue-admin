@@ -1,4 +1,11 @@
-<script setup></script>
+<script setup lang="ts">
+import { reactive } from "vue";
+
+const form = reactive({
+  account: "188999",
+  password: "aaaa",
+});
+</script>
 
 <template>
   <div
@@ -13,19 +20,16 @@
           <h1 class="text-center m-7 text-xl text-cyan-400">会员注册</h1>
         </div>
         <div>
-          <input class="" placeholder="请输入账号" type="text" />
-          <input class="" placeholder="请输入密码" type="text" />
-          <div class="w-full flex justify-between">
-            <input class="!w-3/5" placeholder="请输入验证码" type="text" />
-            <img
-              src=""
-              alt=""
-              class="bg-red-400 ml-3 p-1 w-2/5 inline h-full rounded-md"
-            />
-          </div>
-          <button class="w-full bg-green-600 p-2 rounded-md text-white">
-            登录
-          </button>
+          <g-input v-model="form.account" />
+          <g-input
+            content="请输入密码"
+            type="password"
+            v-model="form.password"
+          />
+          <!-- <gInput /> -->
+          <g-check />
+          <g-button />
+          <!-- <gButton /> -->
           <div class="links">
             <!-- <ul> -->
             <a href="">主页</a>
@@ -46,11 +50,11 @@
 </template>
 
 <style scoped lang="scss">
-div {
-  input {
-    @apply w-full mb-5 placeholder:text-sm border-pink-300 outline-none focus:ring-2 ring-offset-1 focus:border-white duration-200 border-2 p-1 rounded-md;
-  }
-}
+// div {
+//   input {
+//     @apply w-full mb-5 placeholder:text-sm border-pink-300 outline-none focus:ring-2 ring-offset-1 focus:border-white duration-200 border-2 p-1 rounded-md;
+//   }
+// }
 
 .links {
   @apply mt-3;
