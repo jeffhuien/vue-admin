@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { info } from "./apis/user";
+// import { info } from "./apis/user";
 
 // console.log(import.meta.env.MODE);
-console.log((await info()).data.res.name);
+// console.log((await info()).data.res.name);
 </script>
 
 <template>
+  <!-- <Suspense> -->
   <router-view></router-view>
+  <!-- </Suspense> -->
 </template>
 
 <style scoped>
