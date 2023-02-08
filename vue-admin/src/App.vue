@@ -1,5 +1,8 @@
 <script setup lang="ts">
-console.log(import.meta.env.MODE);
+import { info } from "./apis/user";
+
+// console.log(import.meta.env.MODE);
+console.log((await info()).data.res.name);
 </script>
 
 <template>
