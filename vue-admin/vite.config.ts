@@ -11,7 +11,7 @@ export default ({ command, mode }: ConfigEnv) => {
   const root = process.cwd();
   const env = parseEnv(loadEnv(mode, root));
   // env = parseEnv(env);
-  console.log(env);
+  // console.log(env);
   // env.VITE_SOME_KEY
 
   return {

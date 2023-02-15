@@ -1,8 +1,0 @@
-<!-- import('../') -->
-<script setup></script>
-
-<template>
-  <p>b.vue</p>
-</template>
-
-<style scoped></style>

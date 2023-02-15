@@ -10,8 +10,15 @@ export default class Axios {
     this.interceptors();
   }
 
-  public async request<T>(config: AxiosRequestConfig) {
-    return await this.instance.request<T>(config);
+  public async request<T, D = ResponseResult<T>>(config: AxiosRequestConfig) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const response = await this.instance.request<D>(config);
+        resolve(response.data);
+      } catch (error) {
+        reject(error);
+      }
+    }) as Promise<D>;
   }
 
   private interceptors() {

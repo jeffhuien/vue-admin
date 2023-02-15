@@ -1,5 +1,5 @@
 import { RouteRecordRaw } from "vue-router";
-
+import { env } from "@/utils";
 // const layouts = import.meta.globEager("../layouts/*.vue");
 const layouts = import.meta.glob("../layouts/*.vue", {
   eager: true,
@@ -46,6 +46,8 @@ function getRouteModel(file: string, model: unknown) {
   } as RouteRecordRaw;
   return route;
 }
-// console.log(getRoutes());
 
-export default getRoutes();
+// console.log(getRoutes());
+// console.log( utils.env.VITE_ROUTE_AUTOLOAD);
+const routes = env.VITE_ROUTE_AUTOLOAD ? getRoutes() : ([] as RouteRecordRaw[]);
+export default routes;
