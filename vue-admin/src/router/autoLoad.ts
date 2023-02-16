@@ -3,48 +3,85 @@ import { env } from "@/utils";
 // const layouts = import.meta.globEager("../layouts/*.vue");
 const layouts = import.meta.glob("../layouts/*.vue", {
   eager: true,
-  import: "default",
 });
 
 const views = import.meta.glob("../views/**/*.vue", {
   eager: true,
-  import: "default",
 });
+
+// const layouts = import.meta.globEager("../layouts/*.vue");
+// const views = import.meta.globEager("../views/**/*.vue");
+
 // console.log(views);
 // console.log("--------------------");
 
+// function getRoutes() {
+//   const routes = [] as RouteRecordRaw[];
+//   Object.entries(layouts).forEach(([file, model]) => {
+//     const route = getRouteModel(file, model);
+//     route.children = getChildrenRoute(route);
+//     routes.push(route);
+//   });
+//   return routes;
+// }
+
+// function getChildrenRoute(route: RouteRecordRaw) {
+//   // console.log(route.path);
+//   const routes = [] as RouteRecordRaw[];
+//   Object.entries(views).forEach(([file, model]) => {
+//     if (file.includes(`../views${route.path}`)) {
+//       // console.log(file);
+//       const viewRoute = {
+//         path: `${file.substring(file.lastIndexOf("/") + 1, file.length - 4)}`,
+//         component: model,
+//       } as RouteRecordRaw;
+//       routes.push(viewRoute);
+//     }
+//   });
+//   return routes;
+// }
+
+// function getRouteModel(file: string, model: unknown) {
+//   const route = {
+//     name: `${file.substring(file.lastIndexOf("/") + 1, file.length - 4)}`,
+//     path: `/${file.substring(file.lastIndexOf("/") + 1, file.length - 4)}`,
+//     component: model,
+//   } as RouteRecordRaw;
+//   return route;
+// }
+
 function getRoutes() {
-  const routes = [] as RouteRecordRaw[];
-  Object.entries(layouts).forEach(([file, model]) => {
-    const route = getRouteModel(file, model);
-    route.children = getChildrenRoute(route);
-    routes.push(route);
+  const layoutRoutes = [] as RouteRecordRaw[];
+
+  Object.entries(layouts).forEach(([file, module]) => {
+    const route = getRouteModel(file, module as FileReader);
+    route.children = getChildrenRoutes(route);
+    layoutRoutes.push(route);
   });
-  return routes;
+  return layoutRoutes;
 }
 
-function getChildrenRoute(route: RouteRecordRaw) {
-  // console.log(route.path);
+//获取布局路由的子路由
+function getChildrenRoutes(layoutRoute: RouteRecordRaw) {
   const routes = [] as RouteRecordRaw[];
-  Object.entries(views).forEach(([file, model]) => {
-    if (file.includes(`../views${route.path}`)) {
-      // console.log(file);
-      const viewRoute = {
-        path: `${file.substring(file.lastIndexOf("/") + 1, file.length - 4)}`,
-        component: model,
-      } as RouteRecordRaw;
-      routes.push(viewRoute);
+  Object.entries(views).forEach(([file, module]) => {
+    if (file.includes(`../views/${layoutRoute.name as string}`)) {
+      const route = getRouteModel(file, module as FileReader);
+      routes.push(route);
     }
   });
   return routes;
 }
 
-function getRouteModel(file: string, model: unknown) {
+function getRouteModel(file: string, module: { [key: string]: any }) {
+  const name = file.replace(/.+layouts\/|.+views\/|\.vue/gi, "");
   const route = {
-    path: `/${file.substring(file.lastIndexOf("/") + 1, file.length - 4)}`,
-    component: model,
+    name: name.replace("/", "."),
+    path: `/${name}`,
+    component: module.default,
   } as RouteRecordRaw;
-  return route;
+
+  return Object.assign(route, module.default?.route);
 }
 
 // console.log(getRoutes());

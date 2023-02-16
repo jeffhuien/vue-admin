@@ -2,7 +2,9 @@
 import v from "@/plugins/validate";
 import user from "@/apis/user";
 import { store } from "@/utils";
+import router from "@/router";
 const { useForm, useField } = v;
+
 const { handleSubmit, errors } = useForm({
   validationSchema: {
     username: v.yup.string().required(),
@@ -18,7 +20,9 @@ const s = handleSubmit(async (values: any) => {
   const {
     res: { token },
   } = await user.login(values);
-  store.set("token", { expire: 1, token });
+  store.set("token", { expire: 5, token });
+
+  router.push({ name: "home" });
 });
 </script>
 
@@ -112,3 +116,9 @@ const s = handleSubmit(async (values: any) => {
   }
 }
 </style>
+
+<script lang="ts">
+export default {
+  route: { name: "login", meta: { guest: true } },
+};
+</script>

@@ -20,6 +20,8 @@ const { errorMessage: usernameError, value: usernameValue } = useField(
 const OnSubmit = handleSubmit(values => {
   console.log(values);
 });
+
+// export default {name:}
 </script>
 
 <template>

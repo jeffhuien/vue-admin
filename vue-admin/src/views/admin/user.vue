@@ -1,5 +1,7 @@
 <script setup lang="ts"></script>
 
-<template>admin/user.vue</template>
+<template>
+  <span> admin/user.vue </span>
+</template>
 
 <style scoped></style>
