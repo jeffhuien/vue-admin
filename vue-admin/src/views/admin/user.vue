@@ -5,3 +5,8 @@
 </template>
 
 <style scoped></style>
+<script lang="ts">
+export default {
+  route: { meta: { guest: true } },
+};
+</script>

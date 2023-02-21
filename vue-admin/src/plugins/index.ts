@@ -1,15 +1,16 @@
 import { App, Component } from "vue";
 import setupTailwindcss from "./tailwindcss";
 import _ from "lodash";
+import setupElementPlus from "./elementPlus";
 export default function setupPlugins(app: App) {
   setupTailwindcss();
   autoRegisterComponent(app);
+  setupElementPlus(app);
 }
 
 function autoRegisterComponent(app: App) {
   const components = import.meta.glob("../components/form/*.vue", {
     eager: true,
-    import: "default",
   });
 
   Object.keys(components).forEach(k => {

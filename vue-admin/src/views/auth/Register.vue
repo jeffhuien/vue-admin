@@ -2,7 +2,11 @@
 import v from "@/plugins/validate";
 import user from "@/apis/user";
 import { store } from "@/utils";
+
 import router from "@/router";
+
+import gCheck from "@/components/form/g-check.vue";
+
 const { useForm, useField } = v;
 
 const { handleSubmit, errors } = useForm({
@@ -15,15 +19,7 @@ const { handleSubmit, errors } = useForm({
 const { value: username } = useField("username", {});
 const { value: password } = useField("password", {});
 
-const s = handleSubmit(async (values: any) => {
-  console.log(values);
-  const {
-    res: { token },
-  } = await user.login(values);
-  store.set("token", { expire: 5, token });
-
-  router.push({ name: "home" });
-});
+const s = () => {};
 </script>
 
 <template>
@@ -36,7 +32,7 @@ const s = handleSubmit(async (values: any) => {
       <!-- 左 -->
       <div class="p-5 g-boxShadow">
         <div>
-          <h1 class="text-center m-4 text-xl text-cyan-400">会员登录</h1>
+          <h1 class="text-center m-4 text-xl text-cyan-400">会员注册</h1>
         </div>
         <div>
           <form action="" @submit="s">
@@ -54,7 +50,7 @@ const s = handleSubmit(async (values: any) => {
             </div>
             <!-- <gInput /> -->
             <div class="item check">
-              <g-check />
+              <gCheck />
               <p>默认不需要验证码</p>
             </div>
             <g-button />
@@ -62,11 +58,9 @@ const s = handleSubmit(async (values: any) => {
           <!-- <gButton /> -->
           <div class="links">
             <!-- <ul> -->
-            <a href="">主页</a>
-            <a href="">找回密码</a>
-            <span> 还没有账号？</span>
-            <router-link class="text-blue-700" :to="{ name: 'Register' }"
-              >去注册</router-link
+            <span> 已有账号？</span>
+            <router-link class="text-blue-700" :to="{ name: 'login' }"
+              >去登录</router-link
             >
           </div>
         </div>
@@ -108,6 +102,9 @@ const s = handleSubmit(async (values: any) => {
   p {
     @apply absolute text-red-400 text-sm mb-1 -bottom-4;
   }
+  &:last-child {
+    @apply mb-10;
+  }
 }
 
 .check {
@@ -120,6 +117,6 @@ const s = handleSubmit(async (values: any) => {
 
 <script lang="ts">
 export default {
-  route: { name: "login", meta: { guest: true } },
+  route: { name: "Register", meta: { guest: true } },
 };
 </script>
