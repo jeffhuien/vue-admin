@@ -1,13 +1,13 @@
 import { http } from "@/plugins/axios";
 
-export interface User {
-  name: string;
-  age: number;
-}
+// export interface User {
+//   name: string;
+//   age: number;
+// }
 
 function info() {
   return http.request<User>({
-    url: "info",
+    url: "user/info",
   });
 }
 

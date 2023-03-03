@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import v from "@/plugins/validate";
-import user from "@/apis/user";
-import { store } from "@/utils";
+// import user from "@/apis/user";
+// import { store } from "@/utils";
 
-import router from "@/router";
+// import router from "@/router";
 
-import gCheck from "@/components/form/g-check.vue";
+// import gCheck from "@/components/form/g-check.vue";
 
 const { useForm, useField } = v;
 

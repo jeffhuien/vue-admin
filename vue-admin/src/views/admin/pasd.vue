@@ -4,7 +4,7 @@ import { email } from "@vee-validate/rules";
 import { ref } from "vue";
 import { localize } from "@vee-validate/i18n";
 import zh_CN from "@vee-validate/i18n/dist/locale/zh_CN.json";
-import { required } from "@vee-validate/rules";
+// import { required } from "@vee-validate/rules";
 
 defineRule("email", email);
 configure({
@@ -22,7 +22,7 @@ const account = ref("");
 
 <template>
   <div
-    class="flex justify-center items-center border-pink-400 border-4 w-screen h-screen"
+    class="flex justify-center items-center border-pink-400 border-4 w-full h-full"
   >
     <Form @submit="OnSubmit">
       <Field

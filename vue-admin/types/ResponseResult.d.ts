@@ -6,4 +6,5 @@ interface ResponseResult<T> {
 interface User {
   name: string;
   age: number;
+  img: string;
 }

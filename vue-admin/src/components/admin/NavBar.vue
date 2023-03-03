@@ -1,4 +1,5 @@
 <template>
+  <!-- 历史导航条 -->
   <div class="p-2 bg-white rounded-md flex">
     <el-icon class="mr-1"><Location /></el-icon>
     <el-breadcrumb :separator-icon="ArrowRight">

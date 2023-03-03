@@ -1,17 +1,17 @@
-// test.ts
-
 import { Random } from "mockjs";
 import { MockMethod } from "vite-plugin-mock";
 export default [
   {
-    url: "/api/info",
+    url: "/api/user/info",
     method: "get",
     response: () => {
       return {
-        code: 0,
+        message: "获取成功",
+        type: "success",
         res: {
           name: "gaogao",
           age: 18,
+          img: "/img/head.jpg",
         },
       };
     },
@@ -21,7 +21,6 @@ export default [
     method: "post",
     response: () => {
       return {
-        code: 200,
         message: "登录成功",
         type: "success",
         res: {

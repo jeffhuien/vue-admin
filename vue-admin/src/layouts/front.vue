@@ -1,9 +1,8 @@
 <script setup lang="ts"></script>
 
 <template>
-  member
-  <br />
+  前台页面
   <router-view></router-view>
 </template>
 
-<style scoped></style>
+<style scoped lang="scss"></style>

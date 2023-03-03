@@ -6,7 +6,14 @@ declare module "vue-router" {
     // 是可选的
     auth?: boolean;
     guest?: boolean;
-    // 每个路由都必须声明
-    // requiresAuth: boolean;
+    show?: boolean;
+    title?: string;
+    icon?: string;
+    isClick?: boolean;
+    menu?: {
+      show?: boolean;
+      title?: string;
+      icon?: string;
+    };
   }
 }

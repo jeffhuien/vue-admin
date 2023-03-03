@@ -9,9 +9,21 @@ const routes = [
   {
     path: "/:any(.*)",
     name: "NotFound",
-    component: () => import("@/views/NotFound.vue"),
+    component: () => import("@/views/errors/404.vue"),
   },
-  // { path: "/", component: () => import("@/views/auth/login.vue") },
+
+  {
+    path: "/login",
+    component: () => import("../views/auth/login.vue"),
+    name: "login",
+    meta: { guest: true },
+  },
+  {
+    path: "/Register",
+    component: () => import("../views/auth/Register.vue"),
+    name: "Register",
+    meta: { guest: true },
+  },
 ] as RouteRecordRaw[];
 
 export default routes;

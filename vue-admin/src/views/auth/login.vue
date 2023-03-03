@@ -10,29 +10,28 @@ const { handleSubmit, errors } = useForm({
     username: v.yup.string().required(),
     password: v.yup.string().min(3).max(9).required(),
   },
+  initialValues: {
+    username: "jeff-hui@qq.com",
+    password: "admin",
+  },
 });
 
 const { value: username } = useField("username", {});
 const { value: password } = useField("password", {});
 
 const s = handleSubmit(async (values: any) => {
-  console.log(values);
+  // console.log(values);
   const {
     res: { token },
   } = await user.login(values);
   store.set("token", { expire: 5, token });
-
   router.push({ name: "home" });
 });
 </script>
 
 <template>
-  <div
-    class="flex justify-center items-center h-screen bg-cover bg-pink-200 md:bg-[url('/img/pexels-photo-3408744.jpeg')] bg-[url('/img/flower.jpeg')]"
-  >
-    <div
-      class="overflow-hidden w-[720px] max-h-96 bg-none md:grid grid-cols-2 rounded-md m-3"
-    >
+  <div class="flex justify-center items-center h-screen bg-cover bg-pink-200 md:bg-[url('/img/pexels-photo-3408744.jpeg')] bg-[url('/img/flower.jpeg')]">
+    <div class="overflow-hidden w-[720px] max-h-96 bg-none md:grid grid-cols-2 rounded-md m-3">
       <!-- 左 -->
       <div class="p-5 g-boxShadow">
         <div>
@@ -45,11 +44,7 @@ const s = handleSubmit(async (values: any) => {
               <p>{{ errors.username }}</p>
             </div>
             <div class="item">
-              <input
-                placeholder="请输入密码"
-                type="password"
-                v-model="password"
-              />
+              <input placeholder="请输入密码" type="password" v-model="password" />
               <p>{{ errors.password }}</p>
             </div>
             <!-- <gInput /> -->
@@ -65,9 +60,7 @@ const s = handleSubmit(async (values: any) => {
             <a href="">主页</a>
             <a href="">找回密码</a>
             <span> 还没有账号？</span>
-            <router-link class="text-blue-700" :to="{ name: 'Register' }"
-              >去注册</router-link
-            >
+            <router-link class="text-blue-700" :to="{ name: 'Register' }">去注册</router-link>
           </div>
         </div>
       </div>
@@ -119,7 +112,7 @@ const s = handleSubmit(async (values: any) => {
 </style>
 
 <script lang="ts">
-export default {
-  route: { name: "login", meta: { guest: true } },
-};
+// export default {
+//   route: { name: "login", meta: { guest: true } },
+// };
 </script>

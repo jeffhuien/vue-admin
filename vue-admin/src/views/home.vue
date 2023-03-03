@@ -1,26 +1,19 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import user from "@/stores/user";
+const userStore = user();
+</script>
 
 <template>
-  <div
-    class="bg-purple-800 flex flex-col justify-center items-center p-10 h-screen"
-  >
+  <div class="bg-purple-800 flex flex-col justify-center items-center p-10 h-screen">
     <h1 class="bg-pink-500 absolute left-0 top-0 w-full">views/home.vue</h1>
 
-    <img
-      src="/img/head.jpg"
-      alt=""
-      class="w-52 rounded-full h-52 object-cover"
-    />
+    <img :src="userStore.info?.img" alt="" class="w-52 rounded-full h-52 object-cover" />
+    <h4 class="mt-3">
+      admin: <span class="text-red-400"> {{ userStore.info?.name }}</span>
+    </h4>
     <div class="btns">
-      <router-link :to="{ name: 'admin.home' }" class="g-button"
-        >管理页面</router-link
-      >
-      <router-link
-        :to="{ name: 'Register' }"
-        target="_blank"
-        class="g-button ml-5 !bg-red-400"
-        >用户注册</router-link
-      >
+      <router-link :to="{ name: 'admin.home' }" class="g-button">管理页面</router-link>
+      <router-link :to="{ name: 'Register' }" target="_blank" class="g-button ml-5 !bg-red-400">用户注册</router-link>
     </div>
   </div>
 </template>

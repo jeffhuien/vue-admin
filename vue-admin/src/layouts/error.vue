@@ -1,9 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  member
-  <br />
   <router-view></router-view>
 </template>
 
-<style scoped></style>
+<style scoped lang="scss"></style>

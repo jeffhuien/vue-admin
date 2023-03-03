@@ -1,5 +1,5 @@
 <script setup lang="ts"></script>
 
-<template>404</template>
+<template>aboutss</template>
 
 <style scoped lang="scss"></style>
