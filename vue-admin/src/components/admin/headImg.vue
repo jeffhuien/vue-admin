@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import user from "@/stores/user";
+import util from "@/utils";
 const userStore = user();
 </script>
 
@@ -15,7 +16,7 @@ const userStore = user();
           <li><a href="">首页</a></li>
           <li><a href="">关于我</a></li>
           <li><a href="">修改密码</a></li>
-          <li><a href="">退出登录</a></li>
+          <li @click="util.user.logout()"><a href="">退出登录</a></li>
         </ul>
       </div>
     </div>

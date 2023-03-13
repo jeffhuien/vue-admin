@@ -12,7 +12,6 @@ export default {
       meta: {
         permission: "base_editor",
         menu: { title: "富文本编辑器" },
-        show: true,
       },
     },
     {
@@ -22,7 +21,6 @@ export default {
       meta: {
         permission: "markdown_editor",
         menu: { title: "Markdown" },
-        show: true,
       },
     },
   ],

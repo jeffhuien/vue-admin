@@ -7,14 +7,15 @@ export default {
   meta: {
     auth: true,
     menu: { title: "Dashboard", icon: "DashboardOne" },
-    show: true,
   },
   children: [
     {
       name: "admin.home",
       path: "home",
       component: () => import("@/views/admin/home.vue"),
-      meta: { menu: { title: "工作台" }, show: true, isClick: true },
+      meta: {
+        menu: { title: "工作台" },
+      },
     },
   ],
 } as RouteRecordRaw;

@@ -13,20 +13,9 @@
     "skipLibCheck": true,
     "noEmit": true,
     "baseUrl": ".",
-    "paths": { "@/*": ["./src/*"] }
+    "paths": { "@/*": ["./src/*"], "#/*": ["./types/*"] }
   },
 
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "vite.config.ts",
-    "vite/**/*.ts",
-    "mockData/**/*.ts",
-    "types/**/*.d.ts",
-    "types/**/*.ts",
-    "apis/**/*.ts"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "vite.config.ts", "vite/**/*.ts", "mockData/**/*.ts", "types/**/*.d.ts", "types/**/*.ts", "apis/**/*.ts"]
   // "references": [{ "path": "./tsconfig.node.json" }]
 }

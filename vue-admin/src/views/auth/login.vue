@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import v from "@/plugins/validate";
-import user from "@/apis/user";
-import { store } from "@/utils";
-import router from "@/router";
+import util from "@/utils";
+
 const { useForm, useField } = v;
 
 const { handleSubmit, errors } = useForm({
@@ -20,12 +19,7 @@ const { value: username } = useField("username", {});
 const { value: password } = useField("password", {});
 
 const s = handleSubmit(async (values: any) => {
-  // console.log(values);
-  const {
-    res: { token },
-  } = await user.login(values);
-  store.set("token", { expire: 5, token });
-  router.push({ name: "home" });
+  util.user.login(values);
 });
 </script>
 

@@ -1,50 +1,34 @@
 <script setup lang="ts">
-import { router } from "@/stores/router";
+import menuStore from "@/stores/menuStore";
+import { useRoute } from "@/router";
+import { RouteRecordNormalized } from "vue-router";
 
-const RouterStore = router();
+const MenuStore = menuStore();
+MenuStore.getMenus();
+function handle(menu: RouteRecordNormalized) {
+  menu.meta.show = !menu.meta.show;
+  console.log(menu.meta.show);
+  console.log(menu);
+}
 
-const restart = () => {
-  RouterStore.routes.forEach(I => {
-    I.meta.show = false;
-    I.children.forEach(C => {
-      if (C.meta?.show) {
-        C.meta.show = false;
-      }
-    });
-  });
-};
-
-const handle = (F: any) => {
-  restart();
-  F.meta.show = true;
-};
-
-handle(RouterStore.routes[0]);
-
-const active = (C: any, cmenu: any) => {
-  C.forEach((I: { meta: { isClick: boolean } }) => {
-    I.meta.isClick = false;
-  });
-  cmenu.meta.isClick = true;
-};
+// handle(menuStore().menus[0]);
 </script>
 
 <template>
   <!-- admin/home -->
   <!-- <div class="admin"> -->
-
   <section class="p-2">
-    <section class="item" v-for="(route, index) of RouterStore.routes" :key="index">
-      <h4 class="item_title" @click="handle(route)">
+    <section class="item" v-for="(menu, index) of MenuStore.menus" :key="index">
+      <h4 class="item_title" @click="handle(menu)">
         <!-- 切换菜单组操作 -->
         <div>
-          <i :class="route.meta.menu?.icon"></i>
-          {{ route.meta.menu?.title }}
+          <i :class="menu.meta.menu?.icon"></i>
+          {{ menu.meta.menu?.title }}
         </div>
-        <i class="fa-solid fa-angle-down text-white" :class="{ close: !route.meta.show }"></i>
+        <i class="fa-solid fa-angle-down text-white" :class="{ close: !menu.meta?.show }"></i>
       </h4>
-      <dl v-show="route.meta.show" v-for="(cmenu, index) of route.children" :key="index">
-        <dt :class="{ active: cmenu.meta?.isClick }" @click="active(route.children, cmenu)">
+      <dl v-show="menu.meta?.show" v-for="(cmenu, index) of menu.children" :key="index">
+        <dt :class="{ active: useRoute().meta.menu?.title === cmenu.meta?.menu?.title }">
           <router-link :to="{ name: cmenu?.name }" class="w-full block">
             {{ cmenu.meta?.menu?.title }}
           </router-link>

@@ -1,25 +1,28 @@
 interface IData {
   expire?: number;
-  [key: string]: any;
-  // token: string;
+  data?: any;
+  token?: string;
 }
 
 export default {
-  set(key: string, data: IData): any {
-    data.expire = new Date().getTime() + 7 * (86400 * 1000); //7天token
-    // data?.expire = new Date().getTime();
-    localStorage.setItem(key, JSON.stringify(data));
+  set(key: string, data: IData, expire?: number): any {
+    let cache: IData = { data };
+    if (expire) cache.data.expire = new Date().getTime() + 7 * (86400 * 1000); //7天token
+    localStorage.setItem(key, JSON.stringify(cache));
   },
   get(key: string): IData | null | string | any {
-    const item = localStorage.getItem(key);
-    if (item) {
-      const data = JSON.parse(item) as IData;
-      const expire = data.expire;
+    const cacheStore = localStorage.getItem(key);
+    if (cacheStore) {
+      const cache = JSON.parse(cacheStore) as IData;
+      const expire = cache.expire;
       if (expire && expire < new Date().getTime()) {
         localStorage.removeItem(key);
+        return null;
       }
-      return data[key];
+      return cache.data;
     }
-    return null;
+  },
+  remove(key: string) {
+    localStorage.removeItem(key);
   },
 };

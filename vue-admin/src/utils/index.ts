@@ -1,5 +1,5 @@
 import env from "./env";
 import store from "./store";
-
-export default { env, store };
-export { store };
+import * as user from "./user";
+export default { env, store, user };
+// export { store, env, user };

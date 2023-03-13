@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHistory, useRoute } from "vue-router";
 // import autoLoad from "./autoload/views";
 
 import autoLoad from "./autoload";
@@ -19,3 +19,4 @@ export function setupRouter(app: App) {
   app.use(router);
 }
 export default router;
+export { useRoute };

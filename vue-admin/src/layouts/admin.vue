@@ -22,7 +22,11 @@ import headImg from "@/components/admin/headImg.vue";
       </div>
       <historyLink class="" />
       <main>
-        <router-view />
+        <router-view #default="{ Component }">
+          <Transition appear enter-active-class="animate__animated animate__fadeInRight">
+            <component :is="Component" />
+          </Transition>
+        </router-view>
       </main>
     </div>
   </div>

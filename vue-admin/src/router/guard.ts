@@ -1,4 +1,6 @@
 // import { CacheEnum } from "./../enum/cacheEnum";
+import { CacheEnum } from "@/enum/cacheEnum";
+import menuStore from "@/stores/menuStore";
 import user from "@/stores/user";
 import util from "@/utils";
 import { RouteLocationNormalized, Router } from "vue-router";
@@ -12,8 +14,9 @@ class Guard {
 
   private async beforeEach(to: RouteLocationNormalized, from: RouteLocationNormalized) {
     if (to.meta.auth && !this.token()) return { name: "login" };
-    if (to.meta.guest && this.token()) return from;
+    if (to.meta.guest && this.token() && to.name !== "Register") return from;
     await this.getUserInfo();
+    menuStore().addHistoryMenu(to);
   }
 
   private getUserInfo() {
@@ -21,7 +24,7 @@ class Guard {
   }
 
   private token(): string | null {
-    return util.store.get("token");
+    return util.store.get(CacheEnum.TOKEN_NAME);
   }
 }
 
