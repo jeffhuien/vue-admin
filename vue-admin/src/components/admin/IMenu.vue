@@ -1,3 +1,7 @@
+<!--
+ * @Author: GAO GAO
+ * @Date: 2023-02-19 16:23:08
+-->
 <script setup lang="ts">
 import menuStore from "@/stores/menuStore";
 import { useRoute } from "@/router";
@@ -7,11 +11,8 @@ const MenuStore = menuStore();
 MenuStore.getMenus();
 function handle(menu: RouteRecordNormalized) {
   menu.meta.show = !menu.meta.show;
-  console.log(menu.meta.show);
-  console.log(menu);
 }
-
-// handle(menuStore().menus[0]);
+if (useRoute().name === "admin.home") handle(MenuStore.menus[0]);
 </script>
 
 <template>
@@ -43,6 +44,11 @@ function handle(menu: RouteRecordNormalized) {
   @apply mb-4;
   .item_title {
     @apply text-base mb-2 flex justify-between;
+    div {
+      i {
+        color: rgb(255, 255, 255) !important;
+      }
+    }
     .close {
       @apply rotate-180;
     }

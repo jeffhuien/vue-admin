@@ -4,7 +4,8 @@ const routes = [
     path: "/",
     component: () => import("../views/home.vue"),
     name: "home",
-    meta: { auth: true },
+
+    meta: { auth: true, menu: { title: "首页" } },
   },
   {
     path: "/:any(.*)",

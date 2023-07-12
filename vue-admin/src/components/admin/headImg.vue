@@ -13,9 +13,9 @@ const userStore = user();
       <div class="h-link absolute -right-7 z-10 top-7 group-hover:block pt-9 duration-500 hidden">
         <span class="block left-10 w-4 h-4 relative top-2 bg-white rounded-sm rotate-45"></span>
         <ul class="">
-          <li><a href="">首页</a></li>
-          <li><a href="">关于我</a></li>
-          <li><a href="">修改密码</a></li>
+          <li><router-link :to="{ name: 'home' }">首页</router-link></li>
+          <li><router-link :to="{ name: 'userinfo.about' }">关于我</router-link></li>
+          <li><router-link to="">修改密码</router-link></li>
           <li @click="util.user.logout()"><a href="">退出登录</a></li>
         </ul>
       </div>

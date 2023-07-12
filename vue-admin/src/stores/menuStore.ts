@@ -11,7 +11,7 @@ export default defineStore("menu", {
 
   actions: {
     addHistoryMenu(route: RouteLocationNormalized) {
-      const menu = { name: route.name, title: route.meta.menu?.title } as IMenu;
+      const menu = { name: route.name, title: route.meta.menu?.title, close: false } as IMenu;
 
       this.historyMenu.push(menu); //添加后去重
       for (let i = 0; i < this.historyMenu.length - 1; i++) {
@@ -23,6 +23,13 @@ export default defineStore("menu", {
         }
       }
     },
+
+    delHistoryMenu(item: IMenu) {
+      this.historyMenu.splice(
+        this.historyMenu.findIndex(I => I.name == item.name),
+        1
+      );
+    },
     getMenus() {
       const router = useRouter();
       const routes = router
@@ -32,8 +39,6 @@ export default defineStore("menu", {
           route.children = route.children.filter(route => route.meta?.menu);
           return route;
         });
-
-      console.log(router.getRoutes().filter(route => route.children.length !== 0));
 
       this.menus = [...routes];
     },

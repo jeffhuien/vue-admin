@@ -1,3 +1,7 @@
+/*
+ * @Author: GAO GAO
+ * @Date: 2023-02-05 16:00:22
+ */
 import { ConfigEnv, loadEnv } from "vite";
 
 import alias from "./vite/alias";
@@ -14,7 +18,7 @@ export default ({ command, mode }: ConfigEnv) => {
     plugins: setupPlugins(isBuild, env),
     server: {
       host: "0.0.0.0",
-      port: 80,
+      port: 8888,
       // open: true,
     },
 

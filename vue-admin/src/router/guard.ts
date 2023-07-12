@@ -4,7 +4,6 @@ import menuStore from "@/stores/menuStore";
 import user from "@/stores/user";
 import util from "@/utils";
 import { RouteLocationNormalized, Router } from "vue-router";
-
 class Guard {
   constructor(private router: Router) {}
 

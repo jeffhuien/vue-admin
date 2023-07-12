@@ -1,3 +1,7 @@
+/*
+ * @Author: GAOGAO
+ * @Date: 2023-02-26 14:39:21
+ */
 import { RouteRecordRaw } from "vue-router";
 
 export default {
@@ -6,7 +10,8 @@ export default {
   component: () => import("@/layouts/admin.vue"),
   meta: {
     auth: true,
-    menu: { title: "错误页面", icon: "Caution" },
+    // <i class="fa-solid fa-square-exclamation"></i>
+    menu: { title: "错误页面", icon: "fa-solid fa-circle-exclamation" },
   },
   children: [
     {

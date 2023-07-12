@@ -1,3 +1,7 @@
+/*
+ * @Author: GAO GAO
+ * @Date: 2023-02-26 12:44:16
+ */
 import { RouteRecordRaw } from "vue-router";
 export default {
   name: "admin",
@@ -6,7 +10,7 @@ export default {
   component: () => import("@/layouts/admin.vue"),
   meta: {
     auth: true,
-    menu: { title: "Dashboard", icon: "DashboardOne" },
+    menu: { title: "Dashboard", icon: "fa-solid fa-house" },
   },
   children: [
     {

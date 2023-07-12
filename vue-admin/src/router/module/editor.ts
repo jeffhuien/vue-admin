@@ -1,9 +1,13 @@
+/*
+ * @Author: GAOGAO
+ * @Date: 2023-02-26 14:39:21
+ */
 import { RouteRecordRaw } from "vue-router";
 export default {
   name: "editor",
   path: "/editor",
   component: () => import("@/layouts/admin.vue"),
-  meta: { auth: true, menu: { title: "编辑器", icon: "EditOne" }, show: true },
+  meta: { auth: true, menu: { title: "编辑器", icon: "fa-solid fa-edit" } },
   children: [
     {
       name: "wangeditor",
